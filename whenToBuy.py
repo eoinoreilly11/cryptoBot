@@ -1,5 +1,4 @@
 import requests
-import bs4 as bs
 import time
 import discord
 from discord.ext import commands
