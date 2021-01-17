@@ -60,7 +60,7 @@ async def on(ctx):
             time.sleep(1)
             await ctx.send(embed=embed)
             winnerE = 1
-        elif int(content[19:23]) > 31000 and winnerE2 == 0:
+        elif int(content[19:23]) > 1050 and winnerE2 == 0:
             embed = discord.Embed(
                 title = 'ETHEREUM = €' + content[18:23],
                 description = 'SELL NOW SELL NOW!!!!',
