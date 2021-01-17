@@ -5,7 +5,7 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix =  '!')
 
-token = 'USER_TOKEN'
+token = 'BOT_TOKEN'
 
 @client.event
 async def on_ready():
