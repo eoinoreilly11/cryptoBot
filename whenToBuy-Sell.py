@@ -2,6 +2,7 @@ import requests
 import time
 import discord
 from discord.ext import commands
+import re
 
 client = commands.Bot(command_prefix =  '!')
 
@@ -14,16 +15,19 @@ async def on_ready():
 
 @client.command(pass_context=True)
 async def on(ctx):
-    winnerB1 = winnerB2 = winnerE1 = winneerE2 = 0
+    winnerB1 = winnerB2 = winnerE1 = winnerE2 = 0
 
     while 1:
 
         url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur'
         content = requests.get(url).text
+        data = str(re.findall(r"[-+]?\d*\.\d+|\d+", content))
+        length = len(data)
+        bit = data[2:length-2]
 
-        if int(content[18:23]) < 28000 and winnerB1 == 0:
+        if float(bit) < 28000 and winnerB1 == 0:
             embed = discord.Embed(
-                title = 'BITCOIN = €' + content[18:23],
+                title = 'BITCOIN = €' + bit,
                 description = 'BUY NOW BUY NOW!!!!',
                 color=discord.Color.gold()
             )
@@ -33,9 +37,9 @@ async def on(ctx):
             time.sleep(1)
             await ctx.send(embed=embed)
             winnerB = 1
-        elif int(content[18:23]) > 31000 and winnerB2 == 0:
+        elif float(bit) > 31000 and winnerB2 == 0:
             embed = discord.Embed(
-                title = 'BITCOIN = €' + content[18:23],
+                title = 'BITCOIN = €' + bit,
                 description = 'SELL NOW SELL NOW!!!!',
                 color=discord.Color.gold()
             )
@@ -47,10 +51,13 @@ async def on(ctx):
         
         url = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur'
         content = requests.get(url).text
+        data = str(re.findall(r"[-+]?\d*\.\d+|\d+", content))
+        length = len(data)
+        ether = data[2:length-2]
 
-        if int(content[19:23]) < 900 and winnerE1 == 0:
+        if float(ether) < 900 and winnerE1 == 0:
             embed = discord.Embed(
-                title = 'ETHEREUM = €' + content[19:23],
+                title = 'ETHEREUM = €' + ether,
                 description = 'BUY NOW BUY NOW!!!!',
                 color= 0x7593FF
             )
@@ -60,16 +67,16 @@ async def on(ctx):
             time.sleep(1)
             await ctx.send(embed=embed)
             winnerE = 1
-        elif int(content[19:23]) > 1050 and winnerE2 == 0:
+        elif float(ether) > 1050 and winnerE2 == 0:
             embed = discord.Embed(
-                title = 'ETHEREUM = €' + content[18:23],
+                title = 'ETHEREUM = €' + ether,
                 description = 'SELL NOW SELL NOW!!!!',
                 color=discord.Color.gold()
             )
             await ctx.send(embed=embed)
             winnerE2 = 1
         else:
-            print('ETHEREUM = €' + content[19:23] + '\n')
+            print('ETHEREUM = €' + ether + '\n')
 
         if winnerB1 == 1 and winnerE1 == 1 and winnerB2 == 1 and winnerE2 == 1:
             break
