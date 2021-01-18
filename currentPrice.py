@@ -2,6 +2,7 @@ import requests
 import time
 import discord
 from discord.ext import commands
+import re
 
 client = commands.Bot(command_prefix =  '!')
 
@@ -17,9 +18,12 @@ async def bit(ctx):
 
     url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur'
     content = requests.get(url).text
+    data = str(re.findall(r"[-+]?\d*\.\d+|\d+", content))
+    length = len(data)
+    bitc = data[2:length-2]
 
     embed = discord.Embed(
-        title = 'BITCOIN = €' + content[18:23],
+        title = 'BITCOIN = €' + bitc,
         color=discord.Color.gold()
         )
 
@@ -30,9 +34,12 @@ async def ether(ctx):
 
     url = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur'
     content = requests.get(url).text
+    data = str(re.findall(r"[-+]?\d*\.\d+|\d+", content))
+    length = len(data)
+    eth = data[2:length-2]
 
     embed = discord.Embed(
-        title = 'ETHEREUM = €' + content[19:23],
+        title = 'ETHEREUM = €' + eth,
         color = 0x7593FF
         )
 
