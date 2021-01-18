@@ -13,7 +13,7 @@ async def on_ready():
 
 
 @client.command(pass_context=True)
-async def price(ctx):
+async def bit(ctx):
 
     url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur'
     content = requests.get(url).text
@@ -26,7 +26,7 @@ async def price(ctx):
     await ctx.send(embed=embed)
 
 @client.command(pass_context=True)
-async def eprice(ctx):
+async def ether(ctx):
 
     url = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur'
     content = requests.get(url).text
