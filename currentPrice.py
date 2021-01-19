@@ -45,5 +45,12 @@ async def ether(ctx):
 
     await ctx.send(embed=embed)
 
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('sound'):
+        await message.channel.send('no boder')
+
 client.run(token)
-    
