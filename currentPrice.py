@@ -45,7 +45,7 @@ async def ether(ctx):
 
     await ctx.send(embed=embed)
 
-@client.event
+@client.command
 async def on_message(message):
     if message.author == client.user:
         return
