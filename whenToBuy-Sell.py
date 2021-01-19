@@ -25,7 +25,7 @@ async def on(ctx):
         length = len(data)
         bit = data[2:length-2]
 
-        if float(bit) < 28000 and winnerB1 == 0:
+        if float(bit) < 29500 and winnerB1 == 0:
             embed = discord.Embed(
                 title = 'BITCOIN = €' + bit,
                 description = 'BUY NOW BUY NOW!!!!',
@@ -37,7 +37,7 @@ async def on(ctx):
             time.sleep(1)
             await ctx.send(embed=embed)
             winnerB = 1
-        elif float(bit) > 31000 and winnerB2 == 0:
+        elif float(bit) > 34000 and winnerB2 == 0:
             embed = discord.Embed(
                 title = 'BITCOIN = €' + bit,
                 description = 'SELL NOW SELL NOW!!!!',
@@ -55,7 +55,7 @@ async def on(ctx):
         length = len(data)
         ether = data[2:length-2]
 
-        if float(ether) < 900 and winnerE1 == 0:
+        if float(ether) < 1000 and winnerE1 == 0:
             embed = discord.Embed(
                 title = 'ETHEREUM = €' + ether,
                 description = 'BUY NOW BUY NOW!!!!',
@@ -67,7 +67,7 @@ async def on(ctx):
             time.sleep(1)
             await ctx.send(embed=embed)
             winnerE = 1
-        elif float(ether) > 1050 and winnerE2 == 0:
+        elif float(ether) > 1200 and winnerE2 == 0:
             embed = discord.Embed(
                 title = 'ETHEREUM = €' + ether,
                 description = 'SELL NOW SELL NOW!!!!',
