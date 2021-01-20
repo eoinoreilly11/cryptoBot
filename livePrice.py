@@ -21,8 +21,6 @@ async def gimme(ctx):
         soup = bs.BeautifulSoup(content.text, 'lxml')
         stock = str(soup.find("div", {"class": "p-currencyInfo__price c-text--number"}).text)
 
-        len = re.findall(r"[-+]?\d*\.\d+|\d+", stock)
-
         embed = discord.Embed(
         title = stock,
         color = discord.Color.gold()
